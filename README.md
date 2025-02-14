@@ -11,5 +11,5 @@ Below is a list of all the payloads I have created.
 |Payload   | Description  |
 |---|---|
 | [SSH-Key-Thief](https://github.com/elementalSec/BashBunnyPayloads/tree/main/SSH-Key-Thief)  | An SSH key stealer for both Windows and Linux systems to quickly grab all files from the current users .ssh directory, and store them in the /loot folder of the Bash Bunny    |
-|   |   |
+| [WiFi-Stealer](https://github.com/elementalSec/BashBunnyPayloads/tree/main/Wifi-Stealer)  | A WiFi password stealer for Windows to grab those WiFi passwords, and store them in the /loot/WiFi folder of the Bash Bunny  |
 |   |   |
