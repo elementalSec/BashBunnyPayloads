@@ -5,7 +5,7 @@
 This repository contains scripts that may be classified as malicious if used improperly. The code provided here is strictly for educational purposes, ethical hacking, and security testing in controlled environments.
  
 
-# Payloads I have created
+# Payloads:
 Below is a list of all the payloads I have created.
 
 |Payload   | Description  |
